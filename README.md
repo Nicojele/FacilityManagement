@@ -1,6 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Task Manegement Tool
 
-## Getting Started
+## Inhalte
+
+- [Genrelle Informationen](#generelle-informationen)
+- [Technologien](#technoligien)
+- [Application starten](#application-starten)
+- [Create Migartions](#create-migrations)
+- [Deploy on Vercel](#deploy-on-vercel)
+
+## Generelle Informationen
+
+Bei diesem Projekt handelt es sich um eine Anwendung zum Organisieren von Aufgaben.
+Es soll dazu dienen die Notwendigkeit von Aufgaben besser handhaben zu können und Aufgaben zu verteilen.
+
+## Technoligien
+### NextJs
+<https://nextjs.org/docs>
+### React
+<https://reactjs.org/docs/getting-started.html>
+
+### PostgreSQL
+<https://www.postgresql.org/docs/>
+
+## Vorraussetzungen
+### Docker
+<https://www.docker.com/get-started>
+
+
+
+## Application starten
 
 First, run the development server:
 
@@ -14,20 +42,17 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Öffne [http://localhost:3000](http://localhost:3000) mit deinem Browser um die Ergebnisse zu sehen.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Du kannst damit starten die `app/page.tsx` zu Bearbeiten. Die Seite updatet sich automisch.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Create Migrations
 
-## Learn More
+Nutze den `docker-compose up` Befehl um die Benötigten Container zum erstellen der Migartions zu starten.
 
-To learn more about Next.js, take a look at the following resources:
+Stelle sicher das der befehl zum Seeden von Daten zur `Package.json` hinzugefügt ist.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Erstelle deine Migartions jetzt, benutze dafür den `npx prisma migarte dev` Befehl.
 
 ## Deploy on Vercel
 
