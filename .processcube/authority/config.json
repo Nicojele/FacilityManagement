@@ -1,0 +1,109 @@
+{
+  "issuerUrl": "http://authority:11560",
+  "applicationPort": 11560,
+  "development": {
+    "builtInReactDevServer": false,
+    "detailedErrors": true,
+    "disableHttpsEnforcement": true,
+    "enableLocalhostImplicit": true,
+    "fixWrongHostnames": true
+  },
+  "database": {
+    "dialect": "postgres",
+    "host": "db",
+    "port": 5432,
+    "username": "admin",
+    "password": "ProcessCubeAdmin1",
+    "database": "authority"
+  },
+  "studio": {
+    "enabled": true,
+    "scope": "openid profile email engine_read engine_write"
+  },
+  "engines": [
+    {
+      "clientId": "atlas_engine",
+      "clientSecret": "atlas_engine",
+      "scope": "openid profile email engine_read engine_write"
+    }
+  ],
+  "otherClients": [
+    {
+      "clientId": "processcube-io",
+      "clientSecret": "sample-app",
+      "scope": "openid profile email engine_read engine_write partner enterprise developer",
+      "grant_types": [
+        "authorization_code",
+        "refresh_token"
+      ],
+      "response_types": [
+        "code"
+      ],
+      "redirect_uris": [
+        "http://localhost:3000/api/auth/callback/authority"
+      ]
+    },
+    {
+      "clientId": "processcube-io_server",
+      "clientSecret": "processcube-io_server_secret",
+      "scope": "upe_admin engine_read engine_write",
+      "grant_types": [
+        "client_credentials",
+        "authorization_code"
+      ]
+    }
+  ],
+  "claims": {
+    "canReadPartnerContent": {
+      "type": "boolean"
+    },
+    "canReadEnterpriseContent": {
+      "type": "boolean"
+    },
+    "canReadDeveloperContent": {
+      "type": "boolean"
+    }
+  },
+  "scopes": {
+    "additionalScopes": {
+      "partner": {
+        "claims": [
+          "canReadPartnerContent"
+        ]
+      },
+      "enterprise": {
+        "claims": [
+          "canReadEnterpriseContent"
+        ]
+      },
+      "developer": {
+        "claims": [
+          "canReadDeveloperContent",
+          "canReadEnterpriseContent",
+          "canReadPartnerContent"
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "path": "/app/extensions",
+    "configs": {
+      "username_password": {
+        "skipConsentPageForClientIds": [
+          "upe_client",
+          "portal",
+          "atlas_studio"
+        ],
+        "customization": {
+          "title": "5Minds Authority"
+        }
+      }
+    }
+  },
+  "externalTaskWorkers": [
+    {
+      "clientId": "external_task_worker",
+      "clientSecret": "external_task_worker_secret"
+    }
+  ]
+}

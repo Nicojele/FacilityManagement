@@ -1,0 +1,167 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "scopes": [
+        "openid",
+        "profile",
+        "email",
+        "engine_read",
+        "engine_write",
+        "upe_admin",
+        "partner",
+        "enterprise",
+        "developer"
+      ],
+      "claims": {
+        "name": "Admin",
+        "email": "admin@processcube.example",
+        "canDownloadInsidersBuild": true,
+        "canReadAdvancedCourseContent": true,
+        "canReadExpertCourseContent": true,
+        "canReadAuthorityIdentityProvidersContent": true,
+        "canReadAuthorityDevExtensionsContent": true,
+        "canReadCliContent": true,
+        "canReadContributionGuideContent": true,
+        "canReadSolutionsContent": true,
+        "canReadEngineExtensionsContent": true,
+        "canReadPythonClientContent": true,
+        "canReadJavaClientContent": true,
+        "canReadBeginnersCourseContent": true,
+        "canReadIntermediateCourseContent": true,
+        "canReadStudioContent": true,
+        "canReadAuthorityContent": true,
+        "canReadEngineContent": true,
+        "canReadPortalContent": true,
+        "canReadAppSdkContent": true,
+        "canReadFaqContent": true
+      }
+    },
+    {
+      "username": "enterprise",
+      "password": "enterprise",
+      "scopes": [
+        "openid",
+        "profile",
+        "email",
+        "engine_read",
+        "engine_write",
+        "enterprise"
+      ],
+      "claims": {
+        "name": "Enterprise",
+        "email": "enterprise@processcube.example",
+        "canReadAdvancedCourseContent": true,
+        "canReadExpertCourseContent": true,
+        "canReadAuthorityIdentityProvidersContent": true,
+        "canReadAuthorityDevExtensionsContent": true,
+        "canReadCliContent": true,
+        "canReadSolutionsContent": true,
+        "canReadEngineExtensionsContent": true,
+        "canReadPythonClientContent": true,
+        "canReadJavaClientContent": true,
+        "canReadBeginnersCourseContent": true,
+        "canReadIntermediateCourseContent": true,
+        "canReadStudioContent": true,
+        "canReadAuthorityContent": true,
+        "canReadEngineContent": true,
+        "canReadPortalContent": true,
+        "canReadAppSdkContent": true,
+        "canReadFaqContent": true
+      }
+    },
+    {
+      "username": "partner",
+      "password": "partner",
+      "scopes": [
+        "openid",
+        "profile",
+        "email",
+        "engine_read",
+        "engine_write",
+        "partner"
+      ],
+      "claims": {
+        "name": "Partner",
+        "email": "partner@processcube.example",
+        "canDownloadInsidersBuild": true,
+        "canReadAdvancedCourseContent": true,
+        "canReadExpertCourseContent": true,
+        "canReadAuthorityIdentityProvidersContent": true,
+        "canReadAuthorityDevExtensionsContent": true,
+        "canReadCliContent": true,
+        "canReadSolutionsContent": true,
+        "canReadEngineExtensionsContent": true,
+        "canReadPythonClientContent": true,
+        "canReadJavaClientContent": true,
+        "canReadBeginnersCourseContent": true,
+        "canReadIntermediateCourseContent": true,
+        "canReadStudioContent": true,
+        "canReadAuthorityContent": true,
+        "canReadEngineContent": true,
+        "canReadPortalContent": true,
+        "canReadAppSdkContent": true,
+        "canReadFaqContent": true
+      }
+    },
+    {
+      "username": "developer",
+      "password": "developer",
+      "scopes": [
+        "openid",
+        "profile",
+        "email",
+        "engine_read",
+        "engine_write",
+        "developer"
+      ],
+      "claims": {
+        "name": "Developer",
+        "email": "developer@processcube.example",
+        "canDownloadInsidersBuild": true,
+        "canReadAdvancedCourseContent": true,
+        "canReadExpertCourseContent": true,
+        "canReadAuthorityIdentityProvidersContent": true,
+        "canReadAuthorityDevExtensionsContent": true,
+        "canReadCliContent": true,
+        "canReadContributionGuideContent": true,
+        "canReadSolutionsContent": true,
+        "canReadEngineExtensionsContent": true,
+        "canReadPythonClientContent": true,
+        "canReadJavaClientContent": true,
+        "canReadBeginnersCourseContent": true,
+        "canReadIntermediateCourseContent": true,
+        "canReadStudioContent": true,
+        "canReadAuthorityContent": true,
+        "canReadEngineContent": true,
+        "canReadPortalContent": true,
+        "canReadAppSdkContent": true,
+        "canReadFaqContent": true
+      }
+    },
+    {
+      "username": "sponsored",
+      "password": "sponsored",
+      "scopes": [
+        "openid",
+        "profile",
+        "email",
+        "engine_read",
+        "engine_write",
+        "sponsored"
+      ],
+      "claims": {
+        "name": "Sponsored",
+        "email": "sponsored@processcube.example",
+        "canReadBeginnersCourseContent": true,
+        "canReadIntermediateCourseContent": true,
+        "canReadStudioContent": true,
+        "canReadAuthorityContent": true,
+        "canReadEngineContent": true,
+        "canReadPortalContent": true,
+        "canReadAppSdkContent": true
+      }
+    }
+  ]
+}
