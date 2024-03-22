@@ -3,11 +3,9 @@
 import { finishUserTask, navigateToUrl, getEngineClient } from '@5minds/processcube_app_sdk/server';
 import { DataModels } from '@5minds/processcube_engine_sdk';
 import { z } from 'zod';
-
-
-import logger from '../../../../../lib/server-logger';
 import { getAccessToken, getIdentity } from '../../../utils/authorization';
 import { navigateHome } from 'src/app/utils/navigation';
+import logger from '@/lib/server-logger';
 
 export async function terminateProcessInstance(processInstanceId: string): Promise<void> {
   logger.info({ processInstanceId: processInstanceId }, 'Terminate ProcessInstance');
