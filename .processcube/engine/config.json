@@ -26,6 +26,6 @@
     "portalUrl": "http://localhost:8082/"
   },
   "application": {
-    "name": "Tasktool"
+    "name": "FacilityManagement"
   }
 }

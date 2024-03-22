@@ -10,8 +10,8 @@
         "engine_read",
         "engine_write",
         "upe_admin",
-        "partner",
-        "enterprise",
+        "officeEmployee",
+        "facilityEmployee",
         "developer"
       ],
       "claims": {
@@ -39,19 +39,19 @@
       }
     },
     {
-      "username": "enterprise",
-      "password": "enterprise",
+      "username": "office-employee",
+      "password": "office-employee",
       "scopes": [
         "openid",
         "profile",
         "email",
         "engine_read",
         "engine_write",
-        "enterprise"
+        "officeEmployee"
       ],
       "claims": {
-        "name": "Enterprise",
-        "email": "enterprise@processcube.example",
+        "name": "office-employee",
+        "email": "office-employee@processcube.example",
         "canReadAdvancedCourseContent": true,
         "canReadExpertCourseContent": true,
         "canReadAuthorityIdentityProvidersContent": true,
@@ -72,19 +72,19 @@
       }
     },
     {
-      "username": "partner",
-      "password": "partner",
+      "username": "facility-employee",
+      "password": "facility-employee",
       "scopes": [
         "openid",
         "profile",
         "email",
         "engine_read",
         "engine_write",
-        "partner"
+        "facilityEmployee"
       ],
       "claims": {
-        "name": "Partner",
-        "email": "partner@processcube.example",
+        "name": "facility-employee",
+        "email": "facility-employee@processcube.example",
         "canDownloadInsidersBuild": true,
         "canReadAdvancedCourseContent": true,
         "canReadExpertCourseContent": true,
@@ -138,29 +138,6 @@
         "canReadPortalContent": true,
         "canReadAppSdkContent": true,
         "canReadFaqContent": true
-      }
-    },
-    {
-      "username": "sponsored",
-      "password": "sponsored",
-      "scopes": [
-        "openid",
-        "profile",
-        "email",
-        "engine_read",
-        "engine_write",
-        "sponsored"
-      ],
-      "claims": {
-        "name": "Sponsored",
-        "email": "sponsored@processcube.example",
-        "canReadBeginnersCourseContent": true,
-        "canReadIntermediateCourseContent": true,
-        "canReadStudioContent": true,
-        "canReadAuthorityContent": true,
-        "canReadEngineContent": true,
-        "canReadPortalContent": true,
-        "canReadAppSdkContent": true
       }
     }
   ]
