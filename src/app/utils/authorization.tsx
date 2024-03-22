@@ -2,7 +2,7 @@
 
 import { Identity } from '@5minds/processcube_engine_sdk';
 import jwtDecode from 'jwt-decode';
-import logger from '../../../lib/server-logger';
+import logger from '@/lib/server-logger';
 
 export async function getIdentity(): Promise<Identity> {
   logger.info({}, 'Get new Identity');

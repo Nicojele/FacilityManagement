@@ -4,7 +4,7 @@ import { getUserTasks, waitForUserTask } from '@5minds/processcube_app_sdk/serve
 import { DataModels } from '@5minds/processcube_engine_sdk';
 import jwtDecode from 'jwt-decode';
 import { navigateToUrl } from '@5minds/processcube_app_sdk/server';
-import logger from '../../../lib/server-logger';
+import logger from '@/lib/server-logger';
 import { getIdentity } from './authorization';
 
 export async function getUserTask(
