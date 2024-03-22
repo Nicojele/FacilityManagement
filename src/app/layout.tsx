@@ -1,9 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import styles from './page.module.css'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
 import Providers from './provider'
+import Navbar from './components/navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,21 +15,15 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+  }) {
+  
   return (
     <html>
       <body className={inter.className}>
-        <div className={styles.description}>
-          <div className={styles.navbar}>
-            <div>
-              <button className={styles.button}><Link href="/">open</Link></button>
-            </div>
-            <div>
-              <button className={styles.button}><Link href="/history">closed</Link></button>
-            </div>
-          </div>
-        </div>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   )
