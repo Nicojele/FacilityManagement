@@ -22,7 +22,6 @@ export async function getProcessInstanzess() {
   const identity = await getIdentity();
   console.log("----------------------Identity---------------------");
   console.log(identity);
-  console.log("---------------------------------------------------");
   const client = getEngineClient();
   
   const instanzes = await client.processInstances.query({ processModelId: "finishTask_Process" }, { identity: identity })
