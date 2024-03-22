@@ -75,3 +75,36 @@
   width: 100%;
   color: black;
 }
+
+.navbarLink {
+  float: left;
+}
+
+.createTaskLink {
+  float: right;
+  
+}
+
+.navbarLink :hover {
+  background-color: blue;
+}
+
+.createTaskLink :hover {
+  background-color: blue;
+}
+
+.link {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
