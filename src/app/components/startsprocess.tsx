@@ -2,9 +2,9 @@
 
 import { Identity } from '@5minds/processcube_engine_sdk';
 import jwtDecode from 'jwt-decode';
-import logger from '../../../lib/server-logger';
 import { getEngineClient, navigateToUrl, startProcess } from '@5minds/processcube_app_sdk/server';
 import { finishUserTaskAndNavigateToUrl } from '../task/[processInstanceId]/create/server-action';
+import logger from '@/lib/server-logger';
  
 export async function startCreateTaskProcess(): Promise<void> {
   const identity = await getIdentity();
@@ -20,6 +20,9 @@ export async function navigateToDetailView(processInstanzeId: string): Promise<v
 
 export async function getProcessInstanzess() {
   const identity = await getIdentity();
+  console.log("----------------------Identity---------------------");
+  console.log(identity);
+  console.log("---------------------------------------------------");
   const client = getEngineClient();
   
   const instanzes = await client.processInstances.query({ processModelId: "finishTask_Process" }, { identity: identity })
@@ -41,8 +44,6 @@ export async function deleteTask(processInstanzeId:string) {
 }
 
 export async function getIdentity(): Promise<Identity> {
-  logger.info({}, 'Get new Identity');
-
   const token = await getAccessToken();
   const decodedToken = jwtDecode<Record<string, unknown>>(token);
 
@@ -57,8 +58,6 @@ export async function getIdentity(): Promise<Identity> {
 }
 
 export async function getAccessToken(): Promise<string> {
-  logger.info({}, 'Get new AccessToken');
-
   const response = await fetch(`${process.env.PROCESSCUBE_AUTHORITY_URL}/token`, {
     method: 'POST',
     headers: {
@@ -75,8 +74,6 @@ export async function getAccessToken(): Promise<string> {
   });
 
   const responseBody = await response.json();
-
-  logger.info({}, 'Return new AccessToken');
 
   return responseBody.access_token;
 }
