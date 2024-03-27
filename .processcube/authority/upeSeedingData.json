@@ -17,25 +17,9 @@
       "claims": {
         "name": "Admin",
         "email": "admin@processcube.example",
-        "canDownloadInsidersBuild": true,
-        "canReadAdvancedCourseContent": true,
-        "canReadExpertCourseContent": true,
-        "canReadAuthorityIdentityProvidersContent": true,
-        "canReadAuthorityDevExtensionsContent": true,
-        "canReadCliContent": true,
-        "canReadContributionGuideContent": true,
-        "canReadSolutionsContent": true,
-        "canReadEngineExtensionsContent": true,
-        "canReadPythonClientContent": true,
-        "canReadJavaClientContent": true,
-        "canReadBeginnersCourseContent": true,
-        "canReadIntermediateCourseContent": true,
-        "canReadStudioContent": true,
-        "canReadAuthorityContent": true,
-        "canReadEngineContent": true,
-        "canReadPortalContent": true,
-        "canReadAppSdkContent": true,
-        "canReadFaqContent": true
+        "canReadOfficeEmployeeContent": true,
+        "canReadFacilityEmployeeContent": true,
+        "canReadAdminContent": true
       }
     },
     {
@@ -52,23 +36,7 @@
       "claims": {
         "name": "office-employee",
         "email": "office-employee@processcube.example",
-        "canReadAdvancedCourseContent": true,
-        "canReadExpertCourseContent": true,
-        "canReadAuthorityIdentityProvidersContent": true,
-        "canReadAuthorityDevExtensionsContent": true,
-        "canReadCliContent": true,
-        "canReadSolutionsContent": true,
-        "canReadEngineExtensionsContent": true,
-        "canReadPythonClientContent": true,
-        "canReadJavaClientContent": true,
-        "canReadBeginnersCourseContent": true,
-        "canReadIntermediateCourseContent": true,
-        "canReadStudioContent": true,
-        "canReadAuthorityContent": true,
-        "canReadEngineContent": true,
-        "canReadPortalContent": true,
-        "canReadAppSdkContent": true,
-        "canReadFaqContent": true
+        "canReadOfficeEmployeeContent": true
       }
     },
     {
@@ -85,24 +53,7 @@
       "claims": {
         "name": "facility-employee",
         "email": "facility-employee@processcube.example",
-        "canDownloadInsidersBuild": true,
-        "canReadAdvancedCourseContent": true,
-        "canReadExpertCourseContent": true,
-        "canReadAuthorityIdentityProvidersContent": true,
-        "canReadAuthorityDevExtensionsContent": true,
-        "canReadCliContent": true,
-        "canReadSolutionsContent": true,
-        "canReadEngineExtensionsContent": true,
-        "canReadPythonClientContent": true,
-        "canReadJavaClientContent": true,
-        "canReadBeginnersCourseContent": true,
-        "canReadIntermediateCourseContent": true,
-        "canReadStudioContent": true,
-        "canReadAuthorityContent": true,
-        "canReadEngineContent": true,
-        "canReadPortalContent": true,
-        "canReadAppSdkContent": true,
-        "canReadFaqContent": true
+        "canReadFacilityEmployeeContent": true
       }
     },
     {
@@ -119,25 +70,9 @@
       "claims": {
         "name": "Developer",
         "email": "developer@processcube.example",
-        "canDownloadInsidersBuild": true,
-        "canReadAdvancedCourseContent": true,
-        "canReadExpertCourseContent": true,
-        "canReadAuthorityIdentityProvidersContent": true,
-        "canReadAuthorityDevExtensionsContent": true,
-        "canReadCliContent": true,
-        "canReadContributionGuideContent": true,
-        "canReadSolutionsContent": true,
-        "canReadEngineExtensionsContent": true,
-        "canReadPythonClientContent": true,
-        "canReadJavaClientContent": true,
-        "canReadBeginnersCourseContent": true,
-        "canReadIntermediateCourseContent": true,
-        "canReadStudioContent": true,
-        "canReadAuthorityContent": true,
-        "canReadEngineContent": true,
-        "canReadPortalContent": true,
-        "canReadAppSdkContent": true,
-        "canReadFaqContent": true
+        "canReadAdminContent": true,
+        "canReadFacilityEmployeeContent": true,
+        "canReadOfficeEmployeeContent": true
       }
     }
   ]

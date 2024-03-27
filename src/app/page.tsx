@@ -50,7 +50,6 @@ export default function Home() {
   return ( 
     <main className={styles.main}>
       <div className={styles.body}>
-        <LogoutButton></LogoutButton>
         <div className={styles.taskContainer}>
           <div className="ag-theme-quartz" style={{ height: '95%', width: '100% '}}>
                 <AgGridReact
