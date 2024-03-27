@@ -82,7 +82,14 @@
 
 .createTaskLink {
   float: right;
-  
+}
+
+.signOutButton {
+  float: right;
+}
+
+.signOutButton :hover {
+  background-color: blue;
 }
 
 .navbarLink :hover {
