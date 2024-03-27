@@ -31,7 +31,7 @@
     {
       "clientId": "processcube-io",
       "clientSecret": "sample-app",
-      "scope": "openid profile email engine_read engine_write office-employee facility-amployee developer",
+      "scope": "openid profile email engine_read engine_write officeEmployee facilityEmployee developer",
       "grant_types": [
         "authorization_code",
         "refresh_token"
@@ -53,20 +53,24 @@
       ]
     }
   ],
-  "claims": {
-    "canReadOfficeEmployeeContent": {
+  "claims": [
+    {
+      "name": "canReadOfficeEmployeeContent",
       "type": "boolean"
     },
-    "canReadFacilityEmployeeContent": {
+    {
+      "name": "canReadFacilityEmployeeContent",
       "type": "boolean"
     },
-    "canReadAdminContent": {
+    {
+      "name": "canReadAdminContent",
       "type": "boolean"
     },
-    "canReadDeveloperContent": {
+    {
+      "name": "canReadDeveloperContent",
       "type": "boolean"
     }
-  },
+  ],
   "scopes": {
     "additionalScopes": {
       "officeEmployee": {
@@ -84,11 +88,11 @@
           "canReadAdminContent"
         ]
       },
-      "developer": {
+      "developer" : {
         "claims": [
-          "canReadDeveloperContent",
           "canReadFacilityEmployeeContent",
-          "canReadOfficeEmployeeContent"
+          "canReadOfficeEmployeeContent",
+          "canReadDeveloperContent"
         ]
       }
     }
