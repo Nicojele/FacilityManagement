@@ -36,7 +36,7 @@ export default function Home() {
     fetchData();
   }, [])
 
-  const columnDefs = [
+  const facilityemployeeColumnDefs = [
     {
       headerName: 'Task',
       children: [
@@ -47,11 +47,22 @@ export default function Home() {
     },
   ]
 
+const officeemployeecolumnDefs = [
+    {
+      headerName: 'Task',
+      children: [
+            { field: 'description' },
+            { field: 'category' },
+      ],
+    },
+  ]
+
   return ( 
     <main className={styles.main}>
       <div className={styles.body}>
         <div className={styles.taskContainer}>
-          <div className="ag-theme-quartz" style={{ height: '95%', width: '100% '}}>
+          <div className="ag-theme-quartz" style={{ height: '95%', width: '100% ' }}>
+            {ses}
                 <AgGridReact
                   rowData={state.tasks}
                   columnDefs={columnDefs}
