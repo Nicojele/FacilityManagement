@@ -10,8 +10,7 @@
         "engine_read",
         "engine_write",
         "upe_admin",
-        "officeEmployee",
-        "facilityEmployee",
+        "admin",
         "developer"
       ],
       "claims": {

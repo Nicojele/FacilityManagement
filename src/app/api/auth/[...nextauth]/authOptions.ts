@@ -17,7 +17,7 @@ export const authOptions: AuthOptions = {
       authorization: {
         params: {
           scope:
-            'openid profile email engine_read engine_write officeEmployee facilityEmployee developer'
+            'openid profile email engine_read engine_write officeEmployee facilityEmployee admin'
         },
       },
       idToken: true,

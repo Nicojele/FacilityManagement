@@ -8,6 +8,7 @@ import CustomButtonComponent from './components/customButtonComponent';
 import { useEffect, useState } from 'react';
 import { getProcessInstanzess } from './components/startsprocess';
 import LogoutButton from './logoutbutton';
+import { useSession } from 'next-auth/react';
 
 interface TaskToolState {
   tasks: any[]
@@ -20,7 +21,9 @@ export default function Home() {
     isLoading: true
   });
 
-   useEffect(() => {
+  const session = useSession();
+  
+  useEffect(() => {
     async function fetchData() {
       const instanzess = []
       const processInstanzes = getProcessInstanzess();
@@ -40,28 +43,35 @@ export default function Home() {
     {
       headerName: 'Task',
       children: [
-            { field: 'description', flex: 2 },
-            { field: 'category', flex: 2 },
-            { field: 'options', cellRenderer: CustomButtonComponent.bind(this), flex: 1 }
+        { field: 'description', flex: 2 },
+        { field: 'category', flex: 2 },
+        { field: 'options', cellRenderer: CustomButtonComponent.bind(this), flex: 1 }
       ],
     },
   ]
 
-  return ( 
-    <main className={styles.main}>
-      <div className={styles.body}>
-        <div className={styles.taskContainer}>
-          <div className="ag-theme-quartz" style={{ height: '95%', width: '100% '}}>
-                <AgGridReact
-                  rowData={state.tasks}
-                  columnDefs={columnDefs}
-                  onGridReady={params => {
-                    params.api.sizeColumnsToFit();
-                  }}
-                />
+  if (session.status === 'authenticated') {
+    return (
+      <main className={styles.main}>
+        <div className={styles.body}>
+          <div className={styles.taskContainer}>
+            <div className="ag-theme-quartz" style={{ height: '95%', width: '100% ' }}>
+              <AgGridReact
+                rowData={state.tasks}
+                columnDefs={columnDefs}
+                onGridReady={params => {
+                  params.api.sizeColumnsToFit();
+                }}
+              />
             </div>
+          </div>
         </div>
-      </div>
-    </main>
-  )
+      </main>
+    )
+  }
+  else {
+    return (
+      <></>
+    )
+  }
 }
