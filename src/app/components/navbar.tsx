@@ -24,6 +24,11 @@ export default function Navbar() {
         {session.status == "authenticated" && (
           <li className={styles.signOutButton} onClick={() => signOut()}><a className={styles.link}>Sign Out</a></li>
         )}
+        {session.data?.user?.claims["canReadAdminContent"] && session.status == "authenticated" ? (
+          <li className={styles.requestetTasksButton} onClick={() => signOut()}><a href="/taskrequests" className={styles.link}>Requestet Tasks</a></li>
+        ) :
+          <></>
+        }
       </ul>
     </form>
   )
