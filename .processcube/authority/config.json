@@ -78,7 +78,9 @@
       },
       "admin": {
         "claims": [
-          "canReadAdminContent"
+          "canReadAdminContent",
+          "canReadFacilityEmployeeContent",
+          "canReadOfficeEmployeeContent"
         ]
       }
     }
