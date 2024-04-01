@@ -22,7 +22,7 @@ export default function Home() {
   });
 
   const session = useSession();
-  
+
   useEffect(() => {
     async function fetchData() {
       const instanzess = []
@@ -39,7 +39,7 @@ export default function Home() {
     fetchData();
   }, [])
 
-  const columnDefs = [
+  const facilityemployeeColumnDefs = [
     {
       headerName: 'Task',
       children: [
@@ -50,7 +50,22 @@ export default function Home() {
     },
   ]
 
-  if (session.status === 'authenticated') {
+  const officeemployeeColumnDefs = [
+    {
+      headerName: 'Task',
+      children: [
+        { field: 'description' },
+        { field: 'category' }
+      ],
+    },
+  ]
+
+  if (state.isLoading) return (
+    <main className={styles.main}>
+      <div className={styles.loader}></div>
+    </main>
+  );
+  if (session.status === 'authenticated' && session.data?.user?.claims["canReadFacilityEmployeeContent"]) {
     return (
       <main className={styles.main}>
         <div className={styles.body}>
@@ -58,7 +73,7 @@ export default function Home() {
             <div className="ag-theme-quartz" style={{ height: '95%', width: '100% ' }}>
               <AgGridReact
                 rowData={state.tasks}
-                columnDefs={columnDefs}
+                columnDefs={facilityemployeeColumnDefs}
                 onGridReady={params => {
                   params.api.sizeColumnsToFit();
                 }}
@@ -69,9 +84,23 @@ export default function Home() {
       </main>
     )
   }
-  else {
+  if (session.status == "authenticated" && session.data?.user?.claims["canReadOfficeEmployeeContent"]) {
     return (
-      <></>
+      <main className={styles.main}>
+        <div className={styles.body}>
+          <div className={styles.taskContainer}>
+            <div className="ag-theme-quartz" style={{ height: '95%', width: '100% ' }}>
+              <AgGridReact
+                rowData={state.tasks}
+                columnDefs={officeemployeeColumnDefs}
+                onGridReady={params => {
+                  params.api.sizeColumnsToFit();
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </main>
     )
   }
 }
