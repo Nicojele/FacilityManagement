@@ -4,7 +4,7 @@ import styles from './page.module.css'
 import { AgGridReact } from 'ag-grid-react'; // AG Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
-import CustomButtonComponent from './components/customButtonComponent';
+import RequestFinishTaskButtonComponent from './components/requestFinishTaskButtonComponent';
 import { useEffect, useState } from 'react';
 import { getProcessInstanzess } from './components/startsprocess';
 import LogoutButton from './logoutbutton';
@@ -45,7 +45,7 @@ export default function Home() {
       children: [
         { field: 'description', flex: 2 },
         { field: 'category', flex: 2 },
-        { field: 'options', cellRenderer: CustomButtonComponent.bind(this), flex: 1 }
+        { field: 'options', cellRenderer: RequestFinishTaskButtonComponent.bind(this), flex: 1 }
       ],
     },
   ]
