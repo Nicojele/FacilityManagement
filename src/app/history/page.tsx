@@ -3,11 +3,11 @@ import styles from "./history.module.css";
 import TaskComponent from "../components/taskComponent";
 import { useEffect, useState } from "react";
 import { Button } from "@blueprintjs/core";
-import { getProcessInstanzess } from "../components/startsprocess";
+import { getReviewFinishProcessInstanzess } from "../components/startsprocess";
 import { AgGridReact } from 'ag-grid-react'; // AG Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
-import CustomButtonComponent from '../components/customButtonComponent';
+import CustomButtonComponent from '../components/reviewCreateTaskButtonComponent';
 
 interface HistoryState {
   tasks: any[]
@@ -53,7 +53,7 @@ export default function ShowOrderView() {
   useEffect(() => {
     async function fetchData() {
       const instanzess = []
-      const processInstanzes = getProcessInstanzess();
+      const processInstanzes = getReviewFinishProcessInstanzess();
       (await processInstanzes).processInstances.forEach((instanz) => {
         if (instanz.state == "finished") {
           instanzess.push({
