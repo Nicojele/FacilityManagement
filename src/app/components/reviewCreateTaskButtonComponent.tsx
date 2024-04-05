@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 import { getUserTask } from "../utils/process-controlling.tsx";
 import { UserTaskInstance } from "@5minds/processcube_engine_sdk";
 
-export default function CustomButtonComponent(props: any) { 
+export default function ReviewCreateTaskButtonComponent(props: any) { 
   const [currentTask, setCurrentTask] = useState<UserTaskInstance | null>(null);
   
-  const flowNodeId = "finishTask";
+  const flowNodeId = "reviewFinishTask";
 
   useEffect(() => {
     getUserTask(props.data.processInstanzeId, flowNodeId).then((data) => {

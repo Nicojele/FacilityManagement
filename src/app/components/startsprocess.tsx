@@ -9,7 +9,7 @@ import logger from '@/lib/server-logger';
 export async function startCreateTaskProcess(): Promise<void> {
   const identity = await getIdentity();
 
-  const prozessInstanze = await startProcess({ processModelId: "createTask_Process" }, identity);
+  const prozessInstanze = await startProcess({ processModelId: "requestTask_Process" }, identity);
   const prozessInstanzeId = prozessInstanze.processInstanceId
   navigateToUrl(`http://localhost:3000/task/${prozessInstanzeId}/create`);
 }
@@ -22,7 +22,23 @@ export async function getProcessInstanzess() {
   const identity = await getIdentity();
   const client = getEngineClient();
   
-  const instanzes = await client.processInstances.query({ processModelId: "finishTask_Process" }, { identity: identity })
+  const instanzes = await client.processInstances.query({ processModelId: "requestFinishTask_Process" }, { identity: identity })
+  return instanzes;
+}
+
+export async function getReviewCreateProcessInstanzess() {
+  const identity = await getIdentity();
+  const client = getEngineClient();
+
+  const instanzes = await client.processInstances.query({ processModelId: "reviewCreateTask_Process" }, { identity: identity });
+  return instanzes;
+}
+
+export async function getReviewFinishProcessInstanzess() {
+  const identity = await getIdentity();
+  const client = getEngineClient();
+
+  const instanzes = await client.processInstances.query({ processModelId: "reviewFinishTask_Process" }, { identity: identity });
   return instanzes;
 }
 
