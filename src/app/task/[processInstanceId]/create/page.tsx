@@ -12,7 +12,7 @@ export default function CreateTaskForm(params: NavigationParams) {
   const [currentTask, setCurrentTask] = useState<UserTaskInstance | null>(null);
   const [pageIsLoading, setPageLoading] = useState(true);
 
-  const flowNodeId = "createTask";
+  const flowNodeId = "requestTask";
 
   const processInstanceId = params.params.processInstanceId;
 
