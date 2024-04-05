@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="finishTask_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
-    <bpmn:participant id="Participant_0px403d" name="finishTask" processRef="finishTask_Process" />
+    <bpmn:participant id="Participant_0px403d" name="finishTask" processRef="reviewFinishTask_Process" />
   </bpmn:collaboration>
-  <bpmn:process id="finishTask_Process" name="finishTask" isExecutable="true">
+  <bpmn:process id="reviewFinishTask_Process" name="finishTask" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Lane">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>reviewFinishTask</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_17xy6vg</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>finishTask</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Start">
       <bpmn:outgoing>Flow_0m25jpo</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0sfp35i" messageRef="Message_zNecYqda" />
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0m25jpo" sourceRef="StartEvent_1" targetRef="finishTask" />
-    <bpmn:sequenceFlow id="Flow_1blk8hg" sourceRef="finishTask" targetRef="Event_17xy6vg" />
-    <bpmn:endEvent id="Event_17xy6vg">
-      <bpmn:incoming>Flow_1blk8hg</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:userTask id="finishTask" name="Finish Task">
+    <bpmn:sequenceFlow id="Flow_0m25jpo" sourceRef="StartEvent_1" targetRef="reviewFinishTask" />
+    <bpmn:sequenceFlow id="Flow_1blk8hg" sourceRef="reviewFinishTask" targetRef="Event_17xy6vg" />
+    <bpmn:userTask id="reviewFinishTask" name="Finish Task">
       <bpmn:incoming>Flow_0m25jpo</bpmn:incoming>
       <bpmn:outgoing>Flow_1blk8hg</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:endEvent id="Event_17xy6vg">
+      <bpmn:incoming>Flow_1blk8hg</bpmn:incoming>
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:message id="Message_zNecYqda" name="StartFinishTask" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -40,12 +40,12 @@
           <dc:Bounds x="98" y="195" width="24" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_17xy6vg_di" bpmnElement="Event_17xy6vg">
-        <dc:Bounds x="552" y="152" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1dx9nxb_di" bpmnElement="finishTask">
+      <bpmndi:BPMNShape id="Activity_1dx9nxb_di" bpmnElement="reviewFinishTask">
         <dc:Bounds x="300" y="130" width="100" height="80" />
         <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_17xy6vg_di" bpmnElement="Event_17xy6vg">
+        <dc:Bounds x="552" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0m25jpo_di" bpmnElement="Flow_0m25jpo">
         <di:waypoint x="128" y="170" />
