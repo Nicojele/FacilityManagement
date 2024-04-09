@@ -23,6 +23,8 @@ export default function Home() {
 
   const session = useSession();
 
+  console.log(session);
+  
   useEffect(() => {
     async function fetchData() {
       const instanzess = []

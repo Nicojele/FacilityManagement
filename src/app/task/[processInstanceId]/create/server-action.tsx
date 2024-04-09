@@ -55,6 +55,62 @@ export async function finishUserTaskAndNavigateToUrl(
   navigateToUrl("/");
 }
 
+export async function finishCreateTaskUserTaskAndNavigateToUrl(
+  currentTask: DataModels.FlowNodeInstances.UserTaskInstance,
+  processInstanceId: string,
+  flowNodeId: string,
+  description: string,
+  category: string,
+  create: boolean,
+): Promise<void> {
+  logger.info(
+    { currentTask: currentTask, processInstanceId: processInstanceId, flowNodeId: flowNodeId },
+    'Finish UserTask and navigate to url',
+  );
+
+  const userTaskResult = {
+    description: description,
+    category: category,
+    create: create
+  };
+
+  const identity = await getIdentity();
+  
+  const finishedUserTask = await finishUserTask(currentTask.flowNodeInstanceId, userTaskResult, identity);
+
+  logger.info({ finishedUserTask: finishedUserTask }, 'Finished UserTask');
+
+  navigateToUrl("/");
+}
+
+export async function finishTaskUserTaskAndNavigateToUrl(
+  currentTask: DataModels.FlowNodeInstances.UserTaskInstance,
+  processInstanceId: string,
+  flowNodeId: string,
+  description: string,
+  category: string,
+  finish: boolean,
+): Promise<void> {
+  logger.info(
+    { currentTask: currentTask, processInstanceId: processInstanceId, flowNodeId: flowNodeId },
+    'Finish UserTask and navigate to url',
+  );
+
+  const userTaskResult = {
+    description: description,
+    category: category,
+    finish: finish
+  };
+
+  const identity = await getIdentity();
+  
+  const finishedUserTask = await finishUserTask(currentTask.flowNodeInstanceId, userTaskResult, identity);
+
+  logger.info({ finishedUserTask: finishedUserTask }, 'Finished UserTask');
+
+  navigateToUrl("/");
+}
+
 export async function createTask(formData: FormData): Promise<any> {
   logger.info({}, 'Create Account in Authority');
   const accessToken = await getAccessToken();
