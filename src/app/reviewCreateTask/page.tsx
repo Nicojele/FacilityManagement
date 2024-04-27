@@ -7,9 +7,10 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 import ReviewCreateTaskButtonComponent from "../components/reviewCreateTaskButtonComponent";
+import { Task } from "../components/task";
 
 interface TaskToolState {
-  tasks: any[]
+  tasks: Task[]
   isLoading: boolean
 }
 
@@ -23,13 +24,12 @@ export default function ShowOrderView() {
 
   useEffect(() => {
     async function fetchData() {
-      const instanzess = []
+      const instanzess = [];
       const testProcessIntanzes = getReviewCreateProcessInstanzess();
       (await testProcessIntanzes).processInstances.forEach((instanz) => {
         if (instanz.state == "running") {
-          instanzess.push({
-            description: instanz.startToken.payload.description, category: instanz.startToken.payload.category, processInstanzeId: instanz.processInstanceId
-          })
+          const task = new Task(instanz.startToken.payload.description, instanz.startToken.payload.category, instanz.processInstanceId, instanz.startToken.payload.date, false);
+          instanzess.push(task);
         }
       });
       setState({ tasks: instanzess, isLoading: false })

@@ -6,7 +6,9 @@ import { getReviewFinishProcessInstanzess } from "../components/startsprocess";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
-import ReviewFinishTaskButtonComponent from "../components/reviewCreateTaskButtonComponent";
+
+import { Task } from "../components/task";
+import ReviewFinishTaskButtonComponent from "../components/reviewFinishTaskButtonComponent";
 
 interface TaskToolState {
   tasks: any[]
@@ -27,9 +29,9 @@ export default function ShowOrderView() {
       const testProcessIntanzes = getReviewFinishProcessInstanzess();
       (await testProcessIntanzes).processInstances.forEach((instanz) => {
         if (instanz.state == "running") {
-          instanzess.push({
-            description: instanz.startToken.payload.description, category: instanz.startToken.payload.category, processInstanzeId: instanz.processInstanceId
-          })
+          console.log(instanz);
+          const task = new Task(instanz.startToken.payload.description, instanz.startToken.payload.category, instanz.processInstanceId, instanz.startToken.payload.date, true);
+          instanzess.push(task)
         }
       });
       setState({ tasks: instanzess, isLoading: false })
