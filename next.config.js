@@ -1,4 +1,14 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+const { withApplicationSdk, NextConfigWithApplicationSdkConfig } = require('@5minds/processcube_app_sdk/server');
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+
+/** @type {NextConfigWithApplicationSdkConfig} */
+const nextConfigWithApplicationSdkConfig = {
+  ...nextConfig,
+  applicationSdk: {
+    useExternalTasks: true,
+  },
+};
+
+module.exports = withApplicationSdk(nextConfigWithApplicationSdkConfig);

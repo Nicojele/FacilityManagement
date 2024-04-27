@@ -2,12 +2,11 @@
 
 import styles from "./components.module.css";
 import { startCreateTaskProcess } from "./startsprocess";
-import LogoutButton from "../logoutbutton";
 import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
   const session = useSession();
-  
+
   function submitFormWithAction() {
       var form = document.getElementById("form") as HTMLFormElement;
       if (form) {
@@ -25,7 +24,12 @@ export default function Navbar() {
           <li className={styles.signOutButton} onClick={() => signOut()}><a className={styles.link}>Sign Out</a></li>
         )}
         {session.data?.user?.claims["canReadAdminContent"] && session.status == "authenticated" ? (
-          <li className={styles.requestetTasksButton} onClick={() => signOut()}><a href="/taskrequests" className={styles.link}>Requestet Tasks</a></li>
+          <li className={styles.requestetTasksButton}><a href="/reviewCreateTask" className={styles.link}>Review create Task requests</a></li>
+        ) :
+          <></>
+        }
+        {session.data?.user?.claims["canReadAdminContent"] && session.status == "authenticated" ? (
+          <li className={styles.requestetTasksButton}><a href="/reviewFinishTask" className={styles.link}>Review finish Task requests</a></li>
         ) :
           <></>
         }

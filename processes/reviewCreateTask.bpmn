@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="createTask_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="createTask" processRef="reviewCreateTask_Process" />
+  </bpmn:collaboration>
+  <bpmn:process id="reviewCreateTask_Process" name="createTask" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1xzf0d3" name="Lane">
+        <bpmn:flowNodeRef>ReviewCreateTaskRequest</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>startReviewCreateTask</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_05iqqph</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_10b11e9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1epagcq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>CreateTaskInFactro</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="Flow_0xc3t4r" sourceRef="startReviewCreateTask" targetRef="ReviewCreateTaskRequest" />
+    <bpmn:userTask id="ReviewCreateTaskRequest" name="ReviewCreateTaskRequest">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="create" type="boolean" />
+          <camunda:formField id="description" type="string" />
+          <camunda:formField id="category" type="string" />
+          <camunda:formField id="date" type="date" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0xc3t4r</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ijklp9</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1053418">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="dataSource" value="{&#10;    createTask: token.history.createTask&#10;}" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:targetRef>task</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:userTask>
+    <bpmn:dataObjectReference id="task" name="Task" dataObjectRef="DataObject_0a0sovv" />
+    <bpmn:dataObject id="DataObject_0a0sovv" />
+    <bpmn:sequenceFlow id="Flow_1ijklp9" sourceRef="ReviewCreateTaskRequest" targetRef="Gateway_05iqqph" />
+    <bpmn:startEvent id="startReviewCreateTask" name="Start">
+      <bpmn:outgoing>Flow_0xc3t4r</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_083mgof" messageRef="Message_7I7AhTrE" />
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_05iqqph">
+      <bpmn:incoming>Flow_1ijklp9</bpmn:incoming>
+      <bpmn:outgoing>Flow_054ct3y</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1cx0s4d</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_10b11e9">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="inputValues" value="{&#10;    payload: token.history.ReviewCreateTaskRequest&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1cx0s4d</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0rajgk8" messageRef="Message_ILtKW642" />
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_1epagcq">
+      <bpmn:incoming>Flow_054ct3y</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_054ct3y" sourceRef="Gateway_05iqqph" targetRef="Event_1epagcq">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.history.ReviewCreateTaskRequest.create == false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="CreateTaskInFactro" name="Create a Task in Factro" camunda:type="external" camunda:topic="create_task_in_factro" />
+    <bpmn:sequenceFlow id="Flow_1cx0s4d" sourceRef="Gateway_05iqqph" targetRef="Event_10b11e9">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.history.ReviewCreateTaskRequest.create == true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmn:message id="Message_mp3W5sTl" name="StartFinishTask" />
+  <bpmn:message id="Message_r63HVVos" name="StartCreateTask" />
+  <bpmn:message id="Message_ltUo31i4" />
+  <bpmn:message id="Message_7I7AhTrE" name="StartReviewTask" />
+  <bpmn:message id="Message_ILtKW642" name="StartRequestFinishTask" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="5" y="-60" width="1015" height="410" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
+        <dc:Bounds x="35" y="-60" width="985" height="410" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13p618f_di" bpmnElement="ReviewCreateTaskRequest">
+        <dc:Bounds x="270" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0niw2tw_di" bpmnElement="task">
+        <dc:Bounds x="302" y="25" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="348" y="43" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1x1nf46_di" bpmnElement="startReviewCreateTask">
+        <dc:Bounds x="92" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="98" y="195" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_05iqqph_di" bpmnElement="Gateway_05iqqph" isMarkerVisible="true">
+        <dc:Bounds x="465" y="145" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1v3yetp_di" bpmnElement="Event_10b11e9">
+        <dc:Bounds x="882" y="262" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1epagcq_di" bpmnElement="Event_1epagcq">
+        <dc:Bounds x="652" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1p69el2_di" bpmnElement="CreateTaskInFactro">
+        <dc:Bounds x="730" y="0" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0xc3t4r_di" bpmnElement="Flow_0xc3t4r">
+        <di:waypoint x="128" y="170" />
+        <di:waypoint x="270" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ijklp9_di" bpmnElement="Flow_1ijklp9">
+        <di:waypoint x="370" y="170" />
+        <di:waypoint x="465" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_054ct3y_di" bpmnElement="Flow_054ct3y">
+        <di:waypoint x="515" y="170" />
+        <di:waypoint x="652" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cx0s4d_di" bpmnElement="Flow_1cx0s4d">
+        <di:waypoint x="490" y="195" />
+        <di:waypoint x="490" y="280" />
+        <di:waypoint x="882" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1053418_di" bpmnElement="DataOutputAssociation_1053418">
+        <di:waypoint x="321" y="130" />
+        <di:waypoint x="322" y="75" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
