@@ -17,29 +17,29 @@
     </bpmn:startEvent>
     <bpmn:userTask id="requestFinishTask" name="requestFinishTask">
       <bpmn:incoming>Flow_0m25jpo</bpmn:incoming>
-      <bpmn:outgoing>Flow_1blk8hg</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1knxy6k</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0m25jpo" sourceRef="Event_18emdfl" targetRef="requestFinishTask" />
     <bpmn:endEvent id="Event_17xy6vg">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="inputValues" value="{&#10;    payload: token.history.requestFinishTask&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1blk8hg</bpmn:incoming>
+      <bpmn:incoming>Flow_1knxy6k</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0a1zmk6" messageRef="Message_sh7CGVZe" />
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0m25jpo" sourceRef="Event_18emdfl" targetRef="requestFinishTask" />
-    <bpmn:sequenceFlow id="Flow_1blk8hg" sourceRef="requestFinishTask" targetRef="Event_17xy6vg" />
+    <bpmn:sequenceFlow id="Flow_1knxy6k" sourceRef="requestFinishTask" targetRef="Event_17xy6vg" />
   </bpmn:process>
   <bpmn:message id="Message_OCUVzb1r" name="StartRequestFinishTask" />
   <bpmn:message id="Message_sh7CGVZe" name="StartFinishTask" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
-        <dc:Bounds x="5" y="4" width="885" height="346" />
+        <dc:Bounds x="5" y="4" width="915" height="346" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
-        <dc:Bounds x="35" y="4" width="855" height="346" />
+        <dc:Bounds x="35" y="4" width="885" height="346" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1kpkghs_di" bpmnElement="Event_18emdfl">
         <dc:Bounds x="102" y="152" width="36" height="36" />
@@ -52,15 +52,15 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1cp7e3d_di" bpmnElement="Event_17xy6vg">
-        <dc:Bounds x="562" y="152" width="36" height="36" />
+        <dc:Bounds x="532" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0m25jpo_di" bpmnElement="Flow_0m25jpo">
         <di:waypoint x="138" y="170" />
         <di:waypoint x="310" y="170" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1blk8hg_di" bpmnElement="Flow_1blk8hg">
+      <bpmndi:BPMNEdge id="Flow_1knxy6k_di" bpmnElement="Flow_1knxy6k">
         <di:waypoint x="410" y="170" />
-        <di:waypoint x="562" y="170" />
+        <di:waypoint x="532" y="170" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

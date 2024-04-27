@@ -7,7 +7,7 @@
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Lane">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>reviewFinishTask</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>reviewTask</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_17xy6vg</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
@@ -15,9 +15,9 @@
       <bpmn:outgoing>Flow_0m25jpo</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0sfp35i" messageRef="Message_zNecYqda" />
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0m25jpo" sourceRef="StartEvent_1" targetRef="reviewFinishTask" />
-    <bpmn:sequenceFlow id="Flow_1blk8hg" sourceRef="reviewFinishTask" targetRef="Event_17xy6vg" />
-    <bpmn:userTask id="reviewFinishTask" name="Finish Task">
+    <bpmn:sequenceFlow id="Flow_0m25jpo" sourceRef="StartEvent_1" targetRef="reviewTask" />
+    <bpmn:sequenceFlow id="Flow_1blk8hg" sourceRef="reviewTask" targetRef="Event_17xy6vg" />
+    <bpmn:userTask id="reviewTask" name="Review Task">
       <bpmn:incoming>Flow_0m25jpo</bpmn:incoming>
       <bpmn:outgoing>Flow_1blk8hg</bpmn:outgoing>
     </bpmn:userTask>
@@ -40,12 +40,12 @@
           <dc:Bounds x="98" y="195" width="24" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1dx9nxb_di" bpmnElement="reviewFinishTask">
+      <bpmndi:BPMNShape id="Activity_1dx9nxb_di" bpmnElement="reviewTask">
         <dc:Bounds x="300" y="130" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_17xy6vg_di" bpmnElement="Event_17xy6vg">
-        <dc:Bounds x="552" y="152" width="36" height="36" />
+        <dc:Bounds x="592" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0m25jpo_di" bpmnElement="Flow_0m25jpo">
         <di:waypoint x="128" y="170" />
@@ -53,7 +53,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1blk8hg_di" bpmnElement="Flow_1blk8hg">
         <di:waypoint x="400" y="170" />
-        <di:waypoint x="552" y="170" />
+        <di:waypoint x="592" y="170" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

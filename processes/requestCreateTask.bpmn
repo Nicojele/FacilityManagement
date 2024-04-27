@@ -19,10 +19,11 @@
         <camunda:formData>
           <camunda:formField id="description" label="Was ist das Problem?" type="string" />
           <camunda:formField id="category" label="Wähle eine gewichtung" type="string" customForm="{&#34;placeholder&#34;:&#34;...&#34;}" />
+          <camunda:formField id="date" type="date" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0xc3t4r</bpmn:incoming>
-      <bpmn:outgoing>Flow_1ijklp9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1gm6wd8</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1053418">
         <bpmn:extensionElements>
           <camunda:properties>
@@ -34,17 +35,17 @@
     </bpmn:userTask>
     <bpmn:dataObjectReference id="DataObjectReference_0niw2tw" dataObjectRef="DataObject_0c6w62r" />
     <bpmn:dataObject id="DataObject_0c6w62r" />
+    <bpmn:sequenceFlow id="Flow_0xc3t4r" sourceRef="Event_1iy531g" targetRef="requestTask" />
     <bpmn:endEvent id="Event_10b11e9">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="inputValues" value="{&#10;    payload: token.history.requestTask&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1ijklp9</bpmn:incoming>
+      <bpmn:incoming>Flow_1gm6wd8</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_160pkx5" messageRef="Message_mp3W5sTl" />
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0xc3t4r" sourceRef="Event_1iy531g" targetRef="requestTask" />
-    <bpmn:sequenceFlow id="Flow_1ijklp9" sourceRef="requestTask" targetRef="Event_10b11e9" />
+    <bpmn:sequenceFlow id="Flow_1gm6wd8" sourceRef="requestTask" targetRef="Event_10b11e9" />
   </bpmn:process>
   <bpmn:message id="Message_mp3W5sTl" name="StartReviewTask" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -69,15 +70,15 @@
         <dc:Bounds x="342" y="25" width="36" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1kk9pmm_di" bpmnElement="Event_10b11e9">
-        <dc:Bounds x="552" y="152" width="36" height="36" />
+        <dc:Bounds x="542" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0xc3t4r_di" bpmnElement="Flow_0xc3t4r">
         <di:waypoint x="168" y="170" />
         <di:waypoint x="310" y="170" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1ijklp9_di" bpmnElement="Flow_1ijklp9">
+      <bpmndi:BPMNEdge id="Flow_1gm6wd8_di" bpmnElement="Flow_1gm6wd8">
         <di:waypoint x="410" y="170" />
-        <di:waypoint x="552" y="170" />
+        <di:waypoint x="542" y="170" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1053418_di" bpmnElement="DataOutputAssociation_1053418">
         <di:waypoint x="361" y="130" />
