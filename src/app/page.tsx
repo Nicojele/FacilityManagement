@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { getProcessInstanzess } from './components/startsprocess';
 import LogoutButton from './logoutbutton';
 import { useSession } from 'next-auth/react';
+import { Task } from './components/task';
 
 interface TaskToolState {
   tasks: any[]
@@ -22,8 +23,6 @@ export default function Home() {
   });
 
   const session = useSession();
-
-  console.log(session);
   
   useEffect(() => {
     async function fetchData() {
@@ -31,15 +30,16 @@ export default function Home() {
       const processInstanzes = getProcessInstanzess();
       (await processInstanzes).processInstances.forEach((instanz) => {
         if (instanz.state == "running") {
-          instanzess.push({
-            description: instanz.startToken.payload.description, category: instanz.startToken.payload.category, finished: false, processInstanzeId: instanz.processInstanceId
-          })
+          const task = new Task(instanz.startToken.payload.description, instanz.startToken.payload.category, instanz.processInstanceId, new Date(), false);
+          instanzess.push( task )
         }
       });
       setState({ tasks: instanzess, isLoading: false })
     }
     fetchData();
   }, [])
+
+  console.log(state);
 
   const facilityemployeeColumnDefs = [
     {
@@ -91,7 +91,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.body}>
           <div className={styles.taskContainer}>
-            <div className="ag-theme-quartz" style={{ height: '95%', width: '100% ' }}>
+            <div className="ag-theme-quartz" style={{ height: '85%', width: '100% ' }}>
               <AgGridReact
                 rowData={state.tasks}
                 columnDefs={officeemployeeColumnDefs}
