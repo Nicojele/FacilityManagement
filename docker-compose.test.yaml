@@ -1,20 +1,32 @@
 version: '3.8'
 services:
+  engine:
+    image: 5minds/processcube_engine:2023-2
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    volumes:
+      - ./.processcube/engine/config/config.json:/etc/engine/config/config.json:ro
+      - ./processes:/processes:ro
+    command: --seed-dir=/processes --port 8000
+    environment:
+      CONFIG_PATH: /etc/engine/config/config.json
+
   db:
     image: postgres:15.4
     restart: unless-stopped
     volumes:
-      # - ./database:/var/lib/postgresql/data
+      - ./database:/var/lib/postgresql/data
       - ./infrastructure/scripts/create-multiple-postgresql-databases.sh:/docker-entrypoint-initdb.d/create-multiple-postgresql-databases.sh:rw
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=ProcessCubeAdmin1
-      - POSTGRES_MULTIPLE_DATABASES=engine,authority
+      - POSTGRES_MULTIPLE_DATABASES=engine,authority,app
     ports:
       - 5432:5432
 
   authority:
-    image: 5minds/processcube_authority:2023-2
+    image: 5minds/processcube_authority:3.0.0-develop-ef9f2c-lrz2vrl1
     ports:
       - 11560:11560
     restart: unless-stopped
@@ -25,18 +37,6 @@ services:
     volumes:
       - ./.processcube/authority/config.json:/etc/authority/config/config.json
       - ./.processcube/authority/upeSeedingData.json:/etc/authority/config/upeSeedingData.json
-
-  engine:
-    image: 5minds/processcube_engine:2023-2
-    restart: unless-stopped
-    ports:
-      - 8000:8000
-    volumes:
-      - ./.processcube/engine/config.json:/etc/engine/config.json:ro
-      - ./processes:/processes:ro
-    command: --seed-dir=/processes --port 8000
-    environment:
-      CONFIG_PATH: /etc/engine/config.json
 
   app:
     build:

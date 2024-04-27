@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "watch": [
+    "app/**/external_task.ts"
+  ],
+  "exec": "next dev",
+  "ext": "js ts tsx jsx",
+  "exitcrash": true
+}
