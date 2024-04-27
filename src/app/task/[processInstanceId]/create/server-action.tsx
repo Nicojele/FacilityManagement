@@ -35,6 +35,8 @@ export async function finishUserTaskAndNavigateToUrl(
   flowNodeId: string,
   description: string,
   category: string,
+  date: Date,
+  isFinished: boolean
 ): Promise<void> {
   logger.info(
     { currentTask: currentTask, processInstanceId: processInstanceId, flowNodeId: flowNodeId },
@@ -44,6 +46,36 @@ export async function finishUserTaskAndNavigateToUrl(
   const userTaskResult = {
     description: description,
     category: category,
+    date: date,
+    isFinished: isFinished
+  };
+
+  const identity = await getIdentity();
+  
+  const finishedUserTask = await finishUserTask(currentTask.flowNodeInstanceId, userTaskResult, identity);
+
+  logger.info({ finishedUserTask: finishedUserTask }, 'Finished UserTask');
+
+  navigateToUrl("/");
+}
+
+export async function finishCreateUserTaskAndNavigateToUrl(
+  currentTask: DataModels.FlowNodeInstances.UserTaskInstance,
+  processInstanceId: string,
+  flowNodeId: string,
+  description: string,
+  category: string,
+  date: Date,
+): Promise<void> {
+  logger.info(
+    { currentTask: currentTask, processInstanceId: processInstanceId, flowNodeId: flowNodeId },
+    'Finish UserTask and navigate to url',
+  );
+
+  const userTaskResult = {
+    description: description,
+    category: category,
+    date: date
   };
 
   const identity = await getIdentity();
@@ -62,6 +94,7 @@ export async function finishCreateTaskUserTaskAndNavigateToUrl(
   description: string,
   category: string,
   create: boolean,
+  date: Date,
 ): Promise<void> {
   logger.info(
     { currentTask: currentTask, processInstanceId: processInstanceId, flowNodeId: flowNodeId },
@@ -71,7 +104,8 @@ export async function finishCreateTaskUserTaskAndNavigateToUrl(
   const userTaskResult = {
     description: description,
     category: category,
-    create: create
+    create: create,
+    date: date
   };
 
   const identity = await getIdentity();

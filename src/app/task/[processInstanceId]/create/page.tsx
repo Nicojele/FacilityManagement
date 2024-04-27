@@ -3,7 +3,7 @@
 import { NavigationParams } from './navigation-params';
 import { useState, useEffect } from 'react';
 import styles from "./page.module.css";
-import { finishUserTaskAndNavigateToUrl } from "./server-action";
+import { finishCreateUserTaskAndNavigateToUrl } from "./server-action";
 import { UserTaskInstance } from "@5minds/processcube_engine_sdk";
 import { navigateHome } from 'src/app/utils/navigation';
 import { getUserTask } from 'src/app/utils/process-controlling.tsx';
@@ -31,12 +31,14 @@ export default function CreateTaskForm(params: NavigationParams) {
   async function submit(formData: FormData) {
     const description = formData.get('description').toString();
     const category = formData.get('category').toString();
-    const finishTask = finishUserTaskAndNavigateToUrl(
+    const date = new Date();
+    const finishTask = finishCreateUserTaskAndNavigateToUrl(
       currentTask,
       processInstanceId,
       flowNodeId,
       description,
       category,
+      date,
     );
 
     return finishTask;
