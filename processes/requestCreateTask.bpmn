@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="requestTask_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
-    <bpmn:participant id="Participant_0px403d" name="requestTask" processRef="requestTask_Process" />
+    <bpmn:participant id="Participant_0px403d" name="Request Task" processRef="requestTask_Process" />
   </bpmn:collaboration>
-  <bpmn:process id="requestTask_Process" name="requestTask" isExecutable="true">
+  <bpmn:process id="requestTask_Process" name="Request Task" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Lane">
         <bpmn:flowNodeRef>Event_1iy531g</bpmn:flowNodeRef>
@@ -14,7 +14,7 @@
     <bpmn:startEvent id="Event_1iy531g" name="Start">
       <bpmn:outgoing>Flow_0xc3t4r</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="requestTask" name="requestTask">
+    <bpmn:userTask id="requestTask" name="Request Task">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="description" label="Was ist das Problem?" type="string" />
@@ -36,6 +36,7 @@
     <bpmn:dataObjectReference id="DataObjectReference_0niw2tw" dataObjectRef="DataObject_0c6w62r" />
     <bpmn:dataObject id="DataObject_0c6w62r" />
     <bpmn:sequenceFlow id="Flow_0xc3t4r" sourceRef="Event_1iy531g" targetRef="requestTask" />
+    <bpmn:sequenceFlow id="Flow_1gm6wd8" sourceRef="requestTask" targetRef="Event_10b11e9" />
     <bpmn:endEvent id="Event_10b11e9">
       <bpmn:extensionElements>
         <camunda:properties>
@@ -45,13 +46,13 @@
       <bpmn:incoming>Flow_1gm6wd8</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_160pkx5" messageRef="Message_mp3W5sTl" />
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1gm6wd8" sourceRef="requestTask" targetRef="Event_10b11e9" />
   </bpmn:process>
   <bpmn:message id="Message_mp3W5sTl" name="StartReviewTask" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
         <dc:Bounds x="5" y="4" width="885" height="346" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
         <dc:Bounds x="35" y="4" width="855" height="346" />
@@ -70,7 +71,7 @@
         <dc:Bounds x="342" y="25" width="36" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1kk9pmm_di" bpmnElement="Event_10b11e9">
-        <dc:Bounds x="542" y="152" width="36" height="36" />
+        <dc:Bounds x="572" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0xc3t4r_di" bpmnElement="Flow_0xc3t4r">
         <di:waypoint x="168" y="170" />
@@ -78,7 +79,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1gm6wd8_di" bpmnElement="Flow_1gm6wd8">
         <di:waypoint x="410" y="170" />
-        <di:waypoint x="542" y="170" />
+        <di:waypoint x="572" y="170" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1053418_di" bpmnElement="DataOutputAssociation_1053418">
         <di:waypoint x="361" y="130" />
