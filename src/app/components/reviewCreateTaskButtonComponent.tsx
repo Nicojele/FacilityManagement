@@ -8,7 +8,7 @@ import { UserTaskInstance } from "@5minds/processcube_engine_sdk";
 
 export default function ReviewCreateTaskButtonComponent(props: any) { 
   const [currentTask, setCurrentTask] = useState<UserTaskInstance | null>(null);
-  
+
   const flowNodeId = "ReviewCreateTaskRequest";
 
   useEffect(() => {
@@ -19,8 +19,8 @@ export default function ReviewCreateTaskButtonComponent(props: any) {
 
   return (
     <div className={styles.optionButtonContainer}>
-      <Button className={styles.finishedButton} icon="tick" onClick={async () => finishCreateTaskUserTaskAndNavigateToUrl(currentTask, props.data.processInstanzeId, flowNodeId, props.data.description, props.data.description, true).then(() => location.reload())}/>
-      <Button className={styles.cancelButton} icon="cross" onClick={async () => finishCreateTaskUserTaskAndNavigateToUrl(currentTask, props.data.processInstanzeId, flowNodeId, props.data.description, props.data.description, false).then(() => location.reload())}/>
+      <Button className={styles.finishedButton} icon="tick" onClick={async () => finishCreateTaskUserTaskAndNavigateToUrl(currentTask, props.data.processInstanzeId, flowNodeId, props.data.description, props.data.category, true, props.data.date).then(() => location.reload())}/>
+      <Button className={styles.cancelButton} icon="cross" onClick={async () => finishCreateTaskUserTaskAndNavigateToUrl(currentTask, props.data.processInstanzeId, flowNodeId, props.data.description, props.data.category, false, props.data.date).then(() => location.reload())}/>
     </div>
   )
 }
