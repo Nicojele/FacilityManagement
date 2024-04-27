@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="createTask_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
-    <bpmn:participant id="Participant_0px403d" name="createTask" processRef="reviewCreateTask_Process" />
+    <bpmn:participant id="Participant_0px403d" name="Create Task" processRef="reviewCreateTask_Process" />
   </bpmn:collaboration>
-  <bpmn:process id="reviewCreateTask_Process" name="createTask" isExecutable="true">
+  <bpmn:process id="reviewCreateTask_Process" name="Create Task" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Lane">
         <bpmn:flowNodeRef>ReviewCreateTaskRequest</bpmn:flowNodeRef>
@@ -53,19 +53,23 @@
           <camunda:property name="inputValues" value="{&#10;    payload: token.history.ReviewCreateTaskRequest&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1cx0s4d</bpmn:incoming>
+      <bpmn:incoming>Flow_0fc7psc</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0rajgk8" messageRef="Message_ILtKW642" />
     </bpmn:endEvent>
     <bpmn:endEvent id="Event_1epagcq">
       <bpmn:incoming>Flow_054ct3y</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_054ct3y" sourceRef="Gateway_05iqqph" targetRef="Event_1epagcq">
+    <bpmn:sequenceFlow id="Flow_054ct3y" name="abgelehnt" sourceRef="Gateway_05iqqph" targetRef="Event_1epagcq">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.history.ReviewCreateTaskRequest.create == false</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:serviceTask id="CreateTaskInFactro" name="Create a Task in Factro" camunda:type="external" camunda:topic="create_task_in_factro" />
-    <bpmn:sequenceFlow id="Flow_1cx0s4d" sourceRef="Gateway_05iqqph" targetRef="Event_10b11e9">
+    <bpmn:sequenceFlow id="Flow_1cx0s4d" name="angenommen" sourceRef="Gateway_05iqqph" targetRef="CreateTaskInFactro">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.history.ReviewCreateTaskRequest.create == true</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0fc7psc" sourceRef="CreateTaskInFactro" targetRef="Event_10b11e9" />
+    <bpmn:serviceTask id="CreateTaskInFactro" name="Create a Task in Factro" camunda:type="external" camunda:topic="create_task_in_factro">
+      <bpmn:incoming>Flow_1cx0s4d</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fc7psc</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_mp3W5sTl" name="StartFinishTask" />
   <bpmn:message id="Message_r63HVVos" name="StartCreateTask" />
@@ -76,6 +80,7 @@
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
         <dc:Bounds x="5" y="-60" width="1015" height="410" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
         <dc:Bounds x="35" y="-60" width="985" height="410" />
@@ -107,7 +112,7 @@
         <dc:Bounds x="652" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1p69el2_di" bpmnElement="CreateTaskInFactro">
-        <dc:Bounds x="730" y="0" width="100" height="80" />
+        <dc:Bounds x="600" y="240" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0xc3t4r_di" bpmnElement="Flow_0xc3t4r">
@@ -121,10 +126,20 @@
       <bpmndi:BPMNEdge id="Flow_054ct3y_di" bpmnElement="Flow_054ct3y">
         <di:waypoint x="515" y="170" />
         <di:waypoint x="652" y="170" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="559" y="152" width="49" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1cx0s4d_di" bpmnElement="Flow_1cx0s4d">
         <di:waypoint x="490" y="195" />
         <di:waypoint x="490" y="280" />
+        <di:waypoint x="600" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="506" y="263" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fc7psc_di" bpmnElement="Flow_0fc7psc">
+        <di:waypoint x="700" y="280" />
         <di:waypoint x="882" y="280" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1053418_di" bpmnElement="DataOutputAssociation_1053418">
