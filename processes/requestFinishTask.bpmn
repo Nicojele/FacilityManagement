@@ -29,9 +29,13 @@
       <bpmn:outgoing>Flow_1wrxlpg</bpmn:outgoing>
       <bpmn:outgoing>Flow_0yv2sg5</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1wrxlpg" name="angenommen" sourceRef="Gateway_16una7c" targetRef="Activity_07m7rdb" />
+    <bpmn:sequenceFlow id="Flow_1wrxlpg" name="angenommen" sourceRef="Gateway_16una7c" targetRef="Activity_07m7rdb">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.history.requestFinishTask.isFinished == true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_16vs2r7" sourceRef="Activity_07m7rdb" targetRef="Event_17xy6vg" />
-    <bpmn:sequenceFlow id="Flow_0yv2sg5" name="abgelehnt" sourceRef="Gateway_16una7c" targetRef="Event_0zqe8iu" />
+    <bpmn:sequenceFlow id="Flow_0yv2sg5" name="abgelehnt" sourceRef="Gateway_16una7c" targetRef="Event_0zqe8iu">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.history.requestFinishTask.isFinished == false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_0zqe8iu">
       <bpmn:incoming>Flow_0yv2sg5</bpmn:incoming>
     </bpmn:endEvent>
@@ -44,7 +48,7 @@
       <bpmn:incoming>Flow_16vs2r7</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0a1zmk6" messageRef="Message_sh7CGVZe" />
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Activity_07m7rdb" name="Put Task in Review" camunda:type="external">
+    <bpmn:serviceTask id="Activity_07m7rdb" name="Put Task in Review" camunda:type="external" camunda:topic="set_task_to_in_review">
       <bpmn:incoming>Flow_1wrxlpg</bpmn:incoming>
       <bpmn:outgoing>Flow_16vs2r7</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -96,7 +100,7 @@
         <di:waypoint x="491" y="260" />
         <di:waypoint x="590" y="260" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="513" y="243" width="68" height="14" />
+          <dc:Bounds x="514" y="243" width="68" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_16vs2r7_di" bpmnElement="Flow_16vs2r7">
@@ -107,7 +111,7 @@
         <di:waypoint x="516" y="170" />
         <di:waypoint x="602" y="170" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="522" y="152" width="49" height="14" />
+          <dc:Bounds x="523" y="152" width="49" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

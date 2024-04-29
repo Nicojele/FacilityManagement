@@ -27,7 +27,7 @@
       <bpmn:incoming>Flow_1itngvk</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_07vhv3w" sourceRef="Activity_12x5ng5" targetRef="Event_0jpcp9r" />
-    <bpmn:serviceTask id="Activity_12x5ng5" name="Change Task back to in Work" camunda:type="external">
+    <bpmn:serviceTask id="Activity_12x5ng5" name="Change Task back to in Work" camunda:type="external" camunda:topic="set_task_to_in_progress">
       <bpmn:incoming>Flow_1iaqxaa</bpmn:incoming>
       <bpmn:outgoing>Flow_07vhv3w</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -41,9 +41,11 @@
       <bpmn:outgoing>Flow_1itngvk</bpmn:outgoing>
       <bpmn:outgoing>Flow_1iaqxaa</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1itngvk" name="angenommen" sourceRef="Gateway_1cavhpd" targetRef="Event_17xy6vg" />
+    <bpmn:sequenceFlow id="Flow_1itngvk" name="angenommen" sourceRef="Gateway_1cavhpd" targetRef="Event_17xy6vg">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.history.reviewTask.isFinished == true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1iaqxaa" name="abgelehnt" sourceRef="Gateway_1cavhpd" targetRef="Activity_12x5ng5">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"></bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.history.reviewTask.isFinished == false</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmn:message id="Message_zNecYqda" name="StartFinishTask" />
