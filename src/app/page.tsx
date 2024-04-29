@@ -6,7 +6,7 @@ import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the 
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 import RequestFinishTaskButtonComponent from './components/requestFinishTaskButtonComponent';
 import { useEffect, useState } from 'react';
-import { getProcessInstanzess } from './components/startsprocess';
+import { getCreateProcessInstanzess, getProcessInstanzess } from './components/startsprocess';
 import LogoutButton from './logoutbutton';
 import { useSession } from 'next-auth/react';
 import { Task } from './components/task';
@@ -28,6 +28,8 @@ export default function Home() {
     async function fetchData() {
       const instanzess = []
       const processInstanzes = getProcessInstanzess();
+      const createprocessInstanzes = getCreateProcessInstanzess();
+      console.log(await createprocessInstanzes);
       (await processInstanzes).processInstances.forEach((instanz) => {
         if (instanz.state == "running") {
           const task = new Task(instanz.startToken.payload.description, instanz.startToken.payload.category, instanz.processInstanceId, new Date(), false);
@@ -38,8 +40,6 @@ export default function Home() {
     }
     fetchData();
   }, [])
-
-  console.log(state);
 
   const facilityemployeeColumnDefs = [
     {

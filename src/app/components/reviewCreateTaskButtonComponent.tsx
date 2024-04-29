@@ -19,8 +19,8 @@ export default function ReviewCreateTaskButtonComponent(props: any) {
 
   return (
     <div className={styles.optionButtonContainer}>
-      <Button className={styles.finishedButton} icon="tick" onClick={async () => finishCreateTaskUserTaskAndNavigateToUrl(currentTask, props.data.processInstanzeId, flowNodeId, props.data.description, props.data.category, true, props.data.date).then(() => location.reload())}/>
-      <Button className={styles.cancelButton} icon="cross" onClick={async () => finishCreateTaskUserTaskAndNavigateToUrl(currentTask, props.data.processInstanzeId, flowNodeId, props.data.description, props.data.category, false, props.data.date).then(() => location.reload())}/>
+      <Button className={styles.finishedButton} data-testid="tick" icon="tick" onClick={async () => finishCreateTaskUserTaskAndNavigateToUrl(currentTask, props.data.processInstanzeId, flowNodeId, props.data.description, props.data.category, true, props.data.date).then(() => location.reload())}/>
+      <Button className={styles.cancelButton} icon='cross' onClick={async () => terminateTask(props.data.processInstanzeId).then(() => location.reload())}/>
     </div>
   )
 }

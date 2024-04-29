@@ -56,7 +56,7 @@ export default function CreateTaskForm(params: NavigationParams) {
       <form action={submit} className={styles.createTaskForm}>
         <div className={styles.createTaskContainer}>
           <h1 className={styles.DescriptionHeader}>Please enter a description</h1>
-          <input type='text' className={styles.descriptionInput} id={"descriptionInput"} name='description'></input>
+          <input type='text' className={styles.descriptionInput} id="descriptionInput" name='description'></input>
           <h1 className={styles.categoryheader}>Select a category</h1>
           <select className={styles.dropdown} id={"categoryInput"} name='category'>
             <option></option>

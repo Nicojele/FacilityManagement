@@ -3,7 +3,6 @@
 import { Identity } from '@5minds/processcube_engine_sdk';
 import jwtDecode from 'jwt-decode';
 import { getEngineClient, navigateToUrl, startProcess } from '@5minds/processcube_app_sdk/server';
-import { finishUserTaskAndNavigateToUrl } from '../task/[processInstanceId]/create/server-action';
 import logger from '@/lib/server-logger';
  
 export async function startCreateTaskProcess(): Promise<void> {
@@ -32,6 +31,21 @@ export async function getReviewCreateProcessInstanzess() {
 
   const instanzes = await client.processInstances.query({ processModelId: "reviewCreateTask_Process" }, { identity: identity });
   return instanzes;
+}
+
+export async function getCreateProcessInstanzess() {
+  const identity = await getIdentity();
+  const client = getEngineClient();
+
+  const instanzes = await client.processInstances.query({ processModelId: "requestTask_Process" }, { identity: identity });
+  const runningInstances = [];
+  for (let index = 0; index < instanzes.processInstances.length; index++) {
+    const element = instanzes.processInstances[index];
+    if (element.state == "running") {
+      runningInstances.push(element);
+    }
+  }
+  return runningInstances;
 }
 
 export async function getReviewFinishProcessInstanzess() {

@@ -26,6 +26,7 @@ export default function ShowOrderView() {
     async function fetchData() {
       const instanzess = [];
       const testProcessIntanzes = getReviewCreateProcessInstanzess();
+      console.log(await testProcessIntanzes);
       (await testProcessIntanzes).processInstances.forEach((instanz) => {
         if (instanz.state == "running") {
           const task = new Task(instanz.startToken.payload.description, instanz.startToken.payload.category, instanz.processInstanceId, instanz.startToken.payload.date, false);
