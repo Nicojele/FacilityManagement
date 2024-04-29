@@ -1,54 +1,30 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { chromium } from 'playwright';
+import { getCreateProcessInstanzess } from '../components/startsprocess';
 
-test('Create a Task', async ({ page }) => {
+test('Create a Task', async () => {
+  const browser = await chromium.launch({ headless: false });
+  const page = await browser.newPage();
   await page.goto('http://localhost:3000/');
-  page.getByRole('listitem')
-    .filter({ hasText: 'Create' })
-//   await page.getByRole('button', { name: 'Open user menu' }).click();
-//   await page.getByRole('menuitem', { name: 'Einloggen →' }).click();
-
-//   await page.getByRole('button', { name: 'Registrieren' }).click();
-//   await page.waitForLoadState('load', { timeout: 30000 });
-
-//   await page.locator('input[name="vorname"]').fill('TestVorname');
-//   const enterDataUrl = page.url();
-//   const instanceAsEmail = enterDataUrl.substring(35, 71) + '@test.de';
-//   const urlWithoutEnterData = enterDataUrl.substring(0, enterDataUrl.length - 10);
-//   const verifyEmailUrl = urlWithoutEnterData + 'verify_email';
-//   await page.locator('input[name="nachname"]').fill('TestNachname');
-//   await page.locator('input[name="unternehmen"]').fill('TestUnternehmen');
-//   await page.locator('input[name="email"]').fill(instanceAsEmail);
-//   await page.locator('input[name="password"]').fill('TestPassword123');
-//   await page.locator('input[name="password-repeat"]').fill('TestPassword123');
-//   await page.getByRole('button', { name: 'Registrieren' }).click();
-
-//   await page.waitForLoadState('load', { timeout: 30000 });
-//   await expect(page).toHaveURL(urlWithoutEnterData + 'confirm_email_sending');
-//   await page.getByRole('button', { name: 'Verstanden' }).click();
-
-//   await expect(page).toHaveURL('http://localhost:3000');
-//   await page.goto(verifyEmailUrl, { timeout: 30000 });
-
-//   await page.waitForLoadState('load', { timeout: 30000 });
-//   await page.getByRole('button', { name: 'Email bestätigen' }).click();
-
-//   await page.waitForLoadState('load', { timeout: 30000 });
-//   await expect(page).toHaveURL('http://localhost:3000/');
-//   await page.getByRole('button', { name: 'Open user menu' }).click();
-//   await page.getByRole('menuitem', { name: 'Einloggen →' }).click();
-
-//   await page.getByRole('button', { name: 'Einloggen' }).click();
-
-//   await page.locator('input[name="username"]').fill(instanceAsEmail);
-//   await page.locator('input[name="password"]').fill('TestPassword123');
-//   await page.locator('input[value="Login"]').click();
-
-//   await page.waitForLoadState('load', { timeout: 30000 });
-//   const okButtonAuthority = page.locator('input[value="OK"]');
-//   if (await okButtonAuthority.isVisible()) {
-//     await page.locator('input[value="OK"]').click();
-//   }
-
-//   await page.getByRole('button', { name: 'Open user menu ' }).click();
-//   await expect(page.getByText(instanceAsEmail)).toBeVisible();
-});
+  await page.getByRole('button', { name: 'Sign in with 5Minds Authority' }).click();
+  await page.locator('input[name="username"]').fill("admin");
+  await page.locator('input[name="password"]').fill("admin");
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.waitForTimeout(2000);
+  await page.getByTestId('Create').click();
+  await page.locator('input[name="description"]').fill("Test Beschreibung");
+  await page.locator('select').selectOption({ label: 'Dringend' });
+  await page.getByRole('button', { name: 'Create Task' }).click();
+  await page.waitForTimeout(2000);
+  await page.getByTestId('ReviewCreateTask').click();
+  await page.waitForTimeout(2500);
+  await page.getByTestId('tick').click();
+  await page.waitForTimeout(2000);
+  await page.getByTestId('tick').click();
+  await page.waitForTimeout(2000);
+  await page.getByTestId('ReviewFinishTask').click();
+  await page.waitForTimeout(2000);
+  await page.getByTestId('tick').click();
+  await page.waitForTimeout(2000);
+  await page.getByTestId('Historie').click();
+})
